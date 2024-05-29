@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-current_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-battery="$current_dir/battery.sh"
-time="%I:%M %p"
-
 left_sep=""
 right_sep=""
 
@@ -35,10 +31,10 @@ pane_active=$carpYellow
 message_fg=$session_bg
 message_bg=$session_fg
 
-time_bg=$bar_bg
-time_fg=$session_fg
-battery_bg=$katanaGray
-battery_fg=$bar_bg
+cpu_bg=$bar_bg
+cpu_fg=$session_fg
+ram_bg=$katanaGray
+ram_fg=$bar_bg
 
 tmux set-window-option -g window-status-activity-style "bold"
 tmux set-window-option -g window-status-bell-style "bold"
@@ -58,8 +54,4 @@ tmux set-window-option -g window-status-current-format "#[fg=${bar_bg}]${left_se
 tmux set-window-option -g window-status-format "#[fg=${bar_bg}]#{?window_last_flag,,#[bg=${window_inactive_bg}]}${left_sep}#{?window_last_flag,,#[fg=${window_inactive_fg}]}#{?window_last_flag,,#[bg=$window_inactive_bg,]} #I #{?window_last_flag,#[bold],#[italics,nobold]}#W ${flags} #{?window_last_flag,#[fg=${window_last_bg}],#[fg=${window_inactive_bg}]}#[bg=${bar_bg}]${left_sep}"
 
 tmux set-option -g status-right "#[bg=${bar_bg},noitalics,nobold]"
-if [[ $($battery) != "0" ]]; then
-  tmux set-option -ga status-right "#[fg=${battery_bg}]${right_sep}#[fg=${battery_fg},bg=${battery_bg}] #($battery) #[fg=${time_bg}]${right_sep}#[fg=${time_fg},bg=${time_bg}] $time "
-else
-  tmux set-option -ga status-right "#[[fg=${time_fg},bg=${time_bg}] $time "
-fi
+tmux set-option -ga status-right "#[fg=${ram_bg}]${right_sep}#[fg=${ram_fg},bg=${ram_bg}] RAM: #{ram} #[fg=${cpu_bg}]${right_sep}#[fg=${cpu_fg},bg=${cpu_bg}] CPU: #{cpu_percentage} "
