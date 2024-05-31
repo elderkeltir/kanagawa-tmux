@@ -30,8 +30,8 @@ session_active_fg=$session_bg
 window_active_fg=$text_fg
 window_active_bg=$carpYellow
 window_last_fg=$text_fg
-window_last_bg=$boatYellow1
-window_inactive_fg=$oldWhite
+window_last_bg=$winterYellow
+window_inactive_fg=$text_fg
 window_inactive_bg=$winterYellow
 
 pane_active=$carpYellow
