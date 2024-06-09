@@ -45,6 +45,8 @@ ram_bg=$kanagawagreen
 ram_fg=$bar_bg
 cp_bg=$bar_bg
 cp_fg=$kanagawaorange
+time_bg=$kanagawapink
+time_fg=$bar_bg
 
 tmux set-window-option -g window-status-activity-style "bold"
 tmux set-window-option -g window-status-bell-style "bold"
@@ -64,4 +66,4 @@ tmux set-window-option -g window-status-current-format "#[fg=${bar_bg}]${left_se
 tmux set-window-option -g window-status-format "#[fg=${bar_bg}]#{?window_last_flag,,#[bg=${window_inactive_bg}]}${left_sep}#{?window_last_flag,,#[fg=${window_inactive_fg}]}#{?window_last_flag,,#[bg=$window_inactive_bg,]} #I #{?window_last_flag,#[bold],#[bold]}#W ${flags} #{?window_last_flag,#[fg=${window_last_bg}],#[fg=${window_inactive_bg}]}#[bg=${bar_bg}]${left_sep}"
 
 tmux set-option -g status-right "#[bg=${bar_bg},noitalics,nobold]"
-tmux set-option -ga status-right "#[fg=${cp_bg}]${right_sep}#[fg=${cp_fg},bg=${cp_bg}] #(test "#{pane_current_path}" = "$HOME" && echo '~' || basename "#{pane_current_path}") #[fg=${ram_bg}]${right_sep}#[fg=${ram_fg},bg=${ram_bg}] RAM: #{ram} #[fg=${cpu_bg}]${right_sep}#[fg=${cpu_fg},bg=${cpu_bg}] CPU: #{cpu_percentage} "
+tmux set-option -ga status-right "#[fg=${cp_bg}]${right_sep}#[fg=${cp_fg},bg=${cp_bg}] #(test "#{pane_current_path}" = "$HOME" && echo '~' || basename "#{pane_current_path}") #[fg=${ram_bg}]${right_sep}#[fg=${ram_fg},bg=${ram_bg}] RAM: #{ram} #[fg=${cpu_bg}]${right_sep}#[fg=${cpu_fg},bg=${cpu_bg}] CPU: #{cpu_percentage} #[fg=${time_bg}]${right_sep}#[fg=${time_fg},bg=${time_bg}] #(date +\"%a %b %d %I:%M %p\")"
